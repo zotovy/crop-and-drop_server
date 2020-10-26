@@ -1,26 +1,34 @@
-import {Router as Express} from "express";
+import { Router as Express } from "express";
 import * as path from "path";
+import UploadService from "./service";
+import FileHelper from  "../../helpers/files";
 
 const Router = Express();
 
-Router.post("/",  async (req, res) => {
+interface FileRequest extends Request {
+    files: any;
+}
 
+// @ts-ignore
+Router.post("/", async (req : FileRequest, res) => {
     if (!req.files || Object.keys(req.files).length === 0) {
         return res.status(400).json({ status: true, error: "no_files_found" });
     }
 
-    let hasError = false;
-
     for (const key of Object.keys(req.files)) {
         const file = req.files[key];
-        const uploadPath = path.join(__dirname, "../../../", "uploads",  `${key}.${file.name.split(".")[1]}`);
+        const uploadPath = path.join(
+            __dirname,
+            "../../",
+            "uploads",
+            `${FileHelper.convertToFilename(new Date())}.${file.name.split(".")[1]}`
+        );
 
-        await file.mv(uploadPath, (e) => console.log(e))
+        await file.mv(uploadPath);
+        await UploadService.convertToBmp(uploadPath);
     }
 
-    if (!hasError) {
-        return res.status(200).json({status: true});
-    }
+    return res.status(200).json({ status: true });
 });
 
 export default Router;

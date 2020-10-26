@@ -2,7 +2,7 @@ import express, { Express } from "express";
 import fileUpload from "express-fileupload";
 import bodyParser from "body-parser";
 import cors from "cors";
-import Router from "./modules";
+import Router from "./modules/index";
 import https from "https";
 import fs from "fs";
 import configHelper from "./helpers/config_helper";

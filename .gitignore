@@ -4,3 +4,6 @@ uploads
 build
 
 build/configs/config.json
+
+
+/.idea/

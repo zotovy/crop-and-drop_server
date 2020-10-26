@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "watch": true,
     "target": "es6",
     "lib": [
       "es6",
@@ -8,20 +7,21 @@
     ],
     "module": "commonjs",
     "outDir": "./build",
-
+    "strict": true,
     "typeRoots": [
       "node_modules/@types"
     ] ,
     "types": [
-      "node"
-    ] ,
+      "node",
+      "jest"    ] ,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
-  "include": ["*.ts", "*.d.ts", "server.ts"],
-  "exclude": ["node_modules"],
-  "compileOnSave": true
-
+  "include": ["*.ts", "*.d.ts", "server.ts", "jest-preload.js", "declaration/mongoose-extended-schema.d.ts"],
+  "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts"],
+  "typeAcquisition": {
+    "include": ["jest"]
+  }
 }
