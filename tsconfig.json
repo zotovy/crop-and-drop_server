@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "watch": true,
+    "target": "es6",
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "module": "commonjs",
+    "outDir": "./build",
+
+    "typeRoots": [
+      "node_modules/@types"
+    ] ,
+    "types": [
+      "node"
+    ] ,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true
+  },
+  "include": ["*.ts", "*.d.ts", "server.ts"],
+  "exclude": ["node_modules"],
+  "compileOnSave": true
+
+}
